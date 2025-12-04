@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass Voice Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black 
+            flex justify-center items-center min-h-screen">
+
+    <div class="backdrop-blur-xl bg-white/10 border border-white/20 
+                shadow-2xl p-6 rounded-3xl w-80">
+
+        <input id="display" disabled
+            class="w-full bg-white/20 backdrop-blur-lg text-white text-right 
+                   text-3xl p-4 rounded-xl mb-4 outline-none shadow-inner"/>
+
+        <div class="grid grid-cols-4 gap-3">
+
+            
+            <button class="bg-red-500/70 hover:bg-red-600/80 text-white py-3 rounded-xl" onclick="clearDisplay()">C</button>
+            <button class="bg-yellow-500/70 hover:bg-yellow-600/80 text-white py-3 rounded-xl" onclick="del()">⌫</button>
+            <button class="bg-blue-500/70 hover:bg-blue-600/80 text-white py-3 rounded-xl" onclick="press('%')">%</button>
+            <button class="bg-purple-500/70 hover:bg-purple-600/80 text-white py-3 rounded-xl" onclick="press('/')">÷</button>
+
+           
+            <button class="btn" onclick="press('7')">7</button>
+            <button class="btn" onclick="press('8')">8</button>
+            <button class="btn" onclick="press('9')">9</button>
+            <button class="op" onclick="press('*')">×</button>
+
+            <button class="btn" onclick="press('4')">4</button>
+            <button class="btn" onclick="press('5')">5</button>
+            <button class="btn" onclick="press('6')">6</button>
+            <button class="op" onclick="press('-')">−</button>
+
+            <button class="btn" onclick="press('1')">1</button>
+            <button class="btn" onclick="press('2')">2</button>
+            <button class="btn" onclick="press('3')">3</button>
+            <button class="op" onclick="press('+')">+</button>
+
+            <button class="btn" onclick="press('0')">0</button>
+            <button class="btn" onclick="press('.')">.</button>
+            <button class="equals col-span-2" onclick="calculate()">=</button>
+        </div>
+
+        <div class="mt-5 flex justify-center">
+            <button id="micBtn"
+                onclick="startListening()"
+                class="bg-red-500 hover:bg-red-600 p-4 rounded-full 
+                       text-white text-2xl shadow-lg">
+                🎤
+            </button>
+        </div>
+    </div>
+
+    <style>
+    .btn {
+        @apply bg-white/10 backdrop-blur-md text-white py-3 rounded-xl 
+               hover:bg-white/20 transition shadow;
+    }
+    .op {
+        @apply bg-blue-500/60 text-white py-3 rounded-xl 
+               hover:bg-blue-600/70 transition shadow;
+    }
+    .equals {
+        @apply bg-green-500/70 text-white py-3 rounded-xl 
+               hover:bg-green-600/80 transition shadow text-xl;
+    }
+</style>
+
+
+    <script src="calc.js"></script>
+</body>
+</html>
