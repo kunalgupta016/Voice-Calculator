@@ -181,9 +181,66 @@ function startListening() {
   };
 }
 
+
+
+const hindiNumbers = {
+  "shunya": 0,
+  "ek": 1,
+  "do": 2,
+  "teen": 3,
+  "char": 4,
+  "paanch": 5,
+  "chhe": 6,
+  "saat": 7,
+  "aath": 8,
+  "nau": 9,
+  "das": 10,
+  "gyarah": 11,
+  "barah": 12
+};
+
+
+const hindiMultipliers = {
+  "sau": 100,
+  "hazaar": 1000,
+  "laakh": 100000,
+  "crore": 10000000
+};
+
+
+function hindiWordsToNumber(text) {
+  let words = text.split(" ");
+  let result = [];
+  let temp = 0;
+
+  words.forEach(word => {
+    if (hindiNumbers[word] !== undefined) {
+      temp += hindiNumbers[word];
+    } 
+    else if (hindiMultipliers[word]) {
+      if (temp === 0) temp = 1;
+      temp *= hindiMultipliers[word];
+    } 
+    else {
+      if (temp !== 0) {
+        result.push(temp);
+        temp = 0;
+      }
+      result.push(word);
+    }
+  });
+
+  if (temp !== 0) {
+    result.push(temp);
+  }
+
+  return result.join(" ");
+}
+
+
 function speechToMath(text) {
   let exp = text.toLowerCase();
-
+  exp = hindiWordsToNumber(exp);
   const replacements = [
     ["divided by", "/"],
     ["divide by", "/"],
